@@ -35,6 +35,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -44,6 +46,8 @@
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
@@ -74,7 +78,7 @@ _Nota: las clasificaciones se calculan basándose en las estadísticas del usuar
 
 Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hide=` con un arreglo de items que quieras ocultar.
 
-> Opciones: `&hide=["stars","commits","prs","issues","contribs"]`
+> Opciones: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
@@ -138,10 +142,12 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `hide` - Ocultar los elementos especificados de las estadísticas _ (valores separados por comas) _
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Cuente los commits totales en lugar de solo los commits del año actual _(boolean)_
 - `count_private` - Cuenta los commits privadas _(boolean)_
 - `line_height` - Establece el alto de línea entre texto _(number)_
+- `custom_title` - Establece un título personalizado
 
 #### Opciones exclusivas de la tarjeta Repo:
 
@@ -151,6 +157,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 
 - `hide` - Ocultar los lenguajes especificados de la tarjeta _(valores separados por comas)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Cambiar entre dos diseños disponibles `default` & `compact`
 - `card_width` - Establecer el ancho de la tarjeta manualmente _(number)_
 
@@ -270,10 +277,10 @@ Por lo general, no podrá diseñar las imágenes una al lado de la otra. Para ha
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 

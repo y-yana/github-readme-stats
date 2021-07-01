@@ -307,4 +307,36 @@ describe("Test renderRepoCard", () => {
     });
     expect(queryByTestId(document.body, "badge")).toBeNull();
   });
+
+  it("should render translated badges", () => {
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        isArchived: true,
+      },
+      {
+        locale: "cn",
+      },
+    );
+
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("已归档");
+
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        isTemplate: true,
+      },
+      {
+        locale: "cn",
+      },
+    );
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
+  });
+  
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { border_radius: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
 });

@@ -8,6 +8,7 @@ const {
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -21,6 +22,9 @@ module.exports = async (req, res) => {
     theme,
     show_owner,
     cache_seconds,
+    locale,
+    border_radius,
+    border_color,
   } = req.query;
 
   let repoData;
@@ -29,6 +33,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -57,13 +65,16 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
-        hide_border,
+        hide_border: parseBoolean(hide_border),
         title_color,
         icon_color,
         text_color,
         bg_color,
         theme,
+        border_radius,
+        border_color,
         show_owner: parseBoolean(show_owner),
+        locale: locale ? locale.toLowerCase() : null,
       }),
     );
   } catch (err) {

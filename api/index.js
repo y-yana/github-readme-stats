@@ -9,6 +9,7 @@ const {
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -28,6 +29,10 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     custom_title,
+    locale,
+    disable_animations,
+    border_radius,
+    border_color,
   } = req.query;
   let stats;
 
@@ -35,6 +40,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -67,6 +76,10 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         custom_title,
+        border_radius,
+        border_color,
+        locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {
